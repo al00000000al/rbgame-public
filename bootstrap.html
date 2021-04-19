@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <title>Я твой раб</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css?41">
+</head>
+<body>
+<header class="header">
+    <button id="refresh_page"></button>
+    <div class="wrap_title"><h4 class="app_title">Я твой раб</h4></div>
+    <div class="header-empty"></div>
+</header>
+<div class="wrap container">
+    <div class="technical-works" style="display:none;">
+        <div class="update-icon"></div>
+        <div class="title">Идут технические работы...</div>
+        <div>~1-4 часа</div>
+    </div>
+
+    <div class="loader-wrap" style="display:none;">
+        <div class="loader"></div>
+    </div>
+
+    <div class="user_header">
+        <button class="button buyDonate">Купить <i class="money-icon"></i></button>
+        <button class="button statBtn" style="display:none;">
+            <div class="stat-text">Ваше место:</div>
+            <div class="stat-position"></div>
+        </button>
+        <div class="user_info">
+            <div class="user_text">
+                <h4 class="title username" style="text-align:right;">...</h4>
+                <div class="text" id="userBalance">0<i class="money-icon"></i></div>
+            </div>
+            <img src="img/ava.jpg?1" alt="ava" class="avatar your-avatar">
+        </div>
+    </div>
+
+    <div class="page" id="profile">
+        <div class="card" id="owner" style="display:none;">
+            <div class="card-header">
+                Твой владелец:
+            </div>
+            <div class="card-content">
+                <div class="profile-wrap">
+                    <img src="img/owner.jpg" alt="ava" class="avatar-big" id="owner-photo">
+                    <div class="owner_text">
+                        <h4 class="title" id="owner-name">Юзер Нейм</h4>
+                        <div class="text-secondary" style="visibility: visible;">Вы тебяете <b>50%</b> пока вы в рабстве
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="card-button" id="buyOut">Выкупиться (580)</button>
+            </div>
+        </div>
+        <div class="card-special">
+            <div class="card-content">
+                <div class="invite-wrap">
+                    <div class="invite-text">Если другие перейдут по вашей ссылке, они станут вашими рабами</div>
+                    <div class="input inviteLink">https://vk.com/app7812366#</div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="card-button-full shareBtn">Поделиться</button>
+            </div>
+        </div>
+        <div class="bonuses-wrap">
+
+            <div class="card">
+                <div class="card-header">
+                    Бонус:
+                </div>
+                <div class="card-content">
+                    <div class="timer" id="bonusTimer">00:00:00</div>
+                </div>
+                <div class="card-footer">
+                    <button class="card-button" id="btnGetBonus">Получить</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header" id="shieldTitle">
+                    Щит (не активен):
+                </div>
+                <div class="card-content">
+                    <div class="timer" id="shieldTimer">00:00:00</div>
+                </div>
+                <div class="card-footer">
+                    <button class="card-button " id="btnShieldActivate">Продлить</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="slaves-wrap">
+            <div class="slaves-header">
+                <h4 class="title" id="slavesCounter">Мои рабы (0):</h4>
+                <div class="slaves-income" id="slavesIncome">+0/час</div>
+            </div>
+            <div class="slaves-filter card">
+                <div class="search-input-wrap">
+                    <label class="label w-100">
+                        <input type="text" class="search-input" placeholder="Поиск" id="searchSlaves"/>
+                    </label>
+                    <span class="search-icon"></span>
+                </div>
+                <div class="card-footer">
+                    <button class="card-button" id="slavesFilter">Фильтры</button>
+                </div>
+            </div>
+
+            <div class="slaves-list">
+                <div class="text-nothing" id="noSlaves" style="display:none;">У вас нет рабов</div>
+
+            </div>
+            <div class="text-nothing" id="slavesHelp" style="margin-bottom: 110px;margin-top: 14px;">Нажмите на раба, чтобы продать его или посмотреть информацию о нем</div>
+        </div>
+
+    </div>
+
+    <div class="page" id="stat" style="display:none;">
+        <div class="category-menu">
+            <div class="category-btn active" id="topSlaves">Рабы</div>
+            <div class="category-btn" id="topMasters">Бояре</div>
+        </div>
+        <div class="stat-list">
+
+        </div>
+    </div>
+    <div class="page" id="market" style="display:none;">
+        <div class="category-market card">
+            <div class="category-market-wrap">
+                <div class="category-btn category-btn-three active" id="marketCategory">Маркет</div>
+                <div class="category-btn category-btn-three " id="exchangeCategory">Рынок</div>
+                <div class="category-btn category-btn-three " id="friendsCategory">Друзья</div>
+            </div>
+            <div class="card-footer">
+                <button class="card-button" id="marketUpdate" style="display:none;">Обновить список (20<i
+                        class="money-icon"></i>)
+                </button>
+                <button class="card-button" id="exchangeFilters" style="display:none;">Фильтры</button>
+                <button class="card-button shareBtn" id="inviteFriendsBtn" style="display:none;">Пригласить друзей</button>
+            </div>
+        </div>
+
+        <button class="btn-special" id="sellYourSlaves" style="display:none;">Продать своих рабов</button>
+
+        <div class="market-list">
+
+        </div>
+
+        <div class="text-nothing" id="noFriends" style="display:none;">Больше нет друзей, которые играют вместе с вами
+        </div>
+        <div class="card-special" id="inviteFriendsCard" style="display:none;">
+            <div class="card-content">
+                <div class="invite-wrap">
+                    <div class="invite-text">Отправляйте ссылку друзьям, чтобы они становились вашими рабами</div>
+                    <div class="input inviteLink">https://vk.com/app7812366#</div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="card-button-full shareBtn">Поделиться</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="menu">
+        <div class="menu-wrap">
+            <button class="menu-button stat-btn" data-to="stat"></button>
+            <button class="menu-button menu-button-active profile-btn" data-to="profile"></button>
+            <button class="menu-button market-btn" data-to="market"></button>
+        </div>
+    </div>
+
+    <button class="btn-bottom" style="display:none;"></button>
+
+</div>
+
+<div class="popup show" style="display:none;">
+    <div class="popup-body">
+        <div class="error-icon"></div>
+        <div class="popup-text">Непредвиденная ошибка</div>
+        <div class="popup-text-small"></div>
+        <button class="popup-button" onclick="Popup.close();">Понятно</button>
+    </div>
+</div>
+<div class="popup-back" onclick="Popup.close();" style="display: none;"></div>
+
+<div class="usercard show container" style="display:none;">
+    <div class="user_info">
+        <img src="img/ava.jpg?1" alt="ava" class="avatar" id="userCardAvatar">
+        <div class="user_text-left">
+            <h4 class="title" id="userCardName">...</h4>
+            <div class="usercard-info market">Статус: <b id="userCardStatus">Раб</b></div>
+            <div class="usercard-info market">Прибыль: <b id="userCardProfit">+150/чаc</b></div>
+            <div class="text-left slaves">
+                <div id="userCardBalance">0</div>
+                <i class="money-icon"></i>
+                <div id="userCardProfitText">100 000/час</div>
+            </div>
+        </div>
+        <div class="shield-wrap friends">
+            <div class="shield-icon"></div>
+            <div class="shield-time" id="userCardShield">30мин</div>
+        </div>
+
+    </div>
+    <div class="usercard-slaveinfo slaves">
+        <div class="card" style="width: 50%;margin-right: 12px;" id="slaveUpgrade">
+            <div class="card-header">
+                Улучшить:
+            </div>
+            <div class="card-content">
+                <div class="timer" id="userCardPrice">12 351</div>
+            </div>
+            <div class="card-footer " style="background: #fff;">
+                <div class="card-footer-wrap">
+                    <div class="text-secondary" id="userCardProfitCard">100 000/час</div>
+                </div>
+            </div>
+        </div>
+        <div class="card" style="width: 50%;margin-left: 12px;">
+            <div class="card-header">
+                Рейтинг:
+            </div>
+            <div class="card-content">
+                <div class="timer" id="userCardRate">Раб</div>
+            </div>
+            <div class="card-footer " style="background: #fff;">
+                <div class="card-footer-wrap">
+                    <div class="text-secondary" id="userCardPosition">500000 место в топе</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="usercard-stat slaves">
+        <div class="title title-center">Стоимость такого раба на рынке</div>
+        <div id="slavechart">
+
+        </div>
+        <div class="usercard-sell slaves">
+            <label for="sellPrice"></label>
+            <input type="number" class="input-price" placeholder="Введите число" name="sellPrice" id="sellPrice" required>
+            <button class="button" id="sellSlave">Продать!</button>
+            <button class="button" id="cancelSellSlave" style="display:none;">Отменить</button>
+        </div>
+    </div>
+    <button class="buy-btn market">Купить (12 351<i class="money-icon"></i>)</button>
+    <button class="master-btn market">Вы не можете купить боярина</button>
+</div>
+<div class="usercard-back" onclick="userCardClose();" style="display:none;"></div>
+
+
+<script src="js/hashes.js"></script>
+<script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@vkontakte/vk-bridge@2.1.2/dist/browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    let API_URL = 'https://rb-api.trainzland.ru/method/';
+    const API_V = 1;
+    const APP_ID = 7812366;
+</script>
+<script src="js/main.js?61"></script>
+
+
+</body>
+</html>
