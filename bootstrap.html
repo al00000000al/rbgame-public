@@ -10,7 +10,8 @@
     <title>Я твой раб</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css?41">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="css/style.css?54a">
 </head>
 <body>
 <header class="header">
@@ -47,14 +48,14 @@
     <div class="page" id="profile">
         <div class="card" id="owner" style="display:none;">
             <div class="card-header">
-                Твой владелец:
+                Ваш хозяин:
             </div>
             <div class="card-content">
                 <div class="profile-wrap">
                     <img src="img/owner.jpg" alt="ava" class="avatar-big" id="owner-photo">
                     <div class="owner_text">
                         <h4 class="title" id="owner-name">Юзер Нейм</h4>
-                        <div class="text-secondary" style="visibility: visible;">Вы тебяете <b>50%</b> пока вы в рабстве
+                        <div class="text-secondary" style="visibility: visible;">Вы теряете <b>50%</b> прибыли
                         </div>
                     </div>
                 </div>
@@ -114,8 +115,13 @@
                     </label>
                     <span class="search-icon"></span>
                 </div>
+                <div class="search-filters" style="display:none;">
+                    <div class="btn-filter active" id="filterPrice">Цена на рынке <span class="icon-up"></span></div>
+                    <div class="btn-filter" id="filterProfit">Доход/час <span class="icon-up"></span></div>
+                </div>
                 <div class="card-footer">
                     <button class="card-button" id="slavesFilter">Фильтры</button>
+                    <button class="card-button" id="acceptFilters" style="display:none;">Применить</button>
                 </div>
             </div>
 
@@ -123,7 +129,7 @@
                 <div class="text-nothing" id="noSlaves" style="display:none;">У вас нет рабов</div>
 
             </div>
-            <div class="text-nothing" id="slavesHelp" style="margin-bottom: 110px;margin-top: 14px;">Нажмите на раба, чтобы продать его или посмотреть информацию о нем</div>
+            <div class="text-nothing" id="slavesHelp" style="margin-bottom: 110px;margin-top: 14px;">Нажмите на пользователя, чтобы продать его на рынке или посмотреть информацию о нём.</div>
         </div>
 
     </div>
@@ -144,11 +150,16 @@
                 <div class="category-btn category-btn-three " id="exchangeCategory">Рынок</div>
                 <div class="category-btn category-btn-three " id="friendsCategory">Друзья</div>
             </div>
+            <div class="search-filters" style="display:none;">
+                <div class="btn-filter active" id="filterPriceExchange">Цена<span class="icon-up"></span></div>
+                <div class="btn-filter" id="filterProfitExchange">Доход/час <span class="icon-up"></span></div>
+            </div>
             <div class="card-footer">
                 <button class="card-button" id="marketUpdate" style="display:none;">Обновить список (20<i
                         class="money-icon"></i>)
                 </button>
                 <button class="card-button" id="exchangeFilters" style="display:none;">Фильтры</button>
+                <button class="card-button" id="acceptFiltersExchange" style="display:none;">Применить</button>
                 <button class="card-button shareBtn" id="inviteFriendsBtn" style="display:none;">Пригласить друзей</button>
             </div>
         </div>
@@ -272,13 +283,14 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-    let API_URL = 'https://rb-api-prod.trainzland.ru/method/';
+    let API_URL = 'https://rb-api.trainzland.ru/method/';
     const API_V = 1;
-    const APP_ID = 7812366;
+    const APP_ID = 7830647;
 </script>
-<script src="js/main.js?61"></script>
+<script src="js/main.js?70"></script>
 
 
 </body>
